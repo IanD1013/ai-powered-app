@@ -21,7 +21,7 @@ const Message = ({ content, isUserMessage }: MessageProps) => {
 
           <div className="flex flex-col ml-6 w-full">
             <div className="flex items-center space-x-2">
-              <span className="text-sm font-semibold text-gray-900 dark:text-white">{isUserMessage ? 'You' : 'Website'} </span>
+              <span className="text-sm font-semibold text-gray-900 dark:text-white">{isUserMessage ? 'You' : 'Bot'} </span>
             </div>
 
             <p className="text-sm font-normal py-2.5 text-gray-900 dark:text-white">{content}</p>
