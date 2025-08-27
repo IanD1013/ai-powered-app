@@ -1,4 +1,10 @@
-import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
+import {
+   useEffect,
+   useRef,
+   useState,
+   type KeyboardEvent,
+   type ClipboardEvent,
+} from 'react';
 import axios from 'axios';
 import ReactMarkDown from 'react-markdown';
 import { useForm } from 'react-hook-form';
@@ -51,12 +57,21 @@ const ChatBot = () => {
       }
    };
 
+   const onCopyMessage = (e: ClipboardEvent) => {
+      const selection = window.getSelection()?.toString().trim();
+      if (selection) {
+         e.preventDefault();
+         e.clipboardData.setData('text/plain', selection);
+      }
+   };
+
    return (
       <div>
          <div className="flex flex-col gap-3 mb-10">
             {messages.map((message, index) => (
                <p
                   key={index}
+                  onCopy={onCopyMessage}
                   className={`px-3 py-1 rounded-xl ${
                      message.role === 'user'
                         ? 'bg-blue-600 text-white self-end'
